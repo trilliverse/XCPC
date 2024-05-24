@@ -44,15 +44,15 @@ ll pow_mod(ll x, ll n, ll mod) {
     return (res + mod) % mod;  
 }  
 bool Miller_Rabbin(ll a, ll n) {  
-    // ﾰ￑n-1  ￗﾪﾻﾯﾳ￉ (2^r)*d  
+    // n-1 to (2^r)*d  
     ll s = n - 1, r = 0;  
     while ((s & 1) == 0) {  
         s >>= 1;  
         r++;  
     }  
   
-    ll k = pow_mod(a, s, n); // ￋ￣ﾳ￶ 2^d  ﾴ￦ￔￚ k ￀￯  
-    // ﾶ￾ﾴￎￌﾽﾲ￢  ﾿ﾴﾱ￤ﾻﾯﾹ�ﾳￌￖ￐ￊￇﾲﾻￊￇﾵ￈ￓￚ1 ﾻ￲ n-1  
+    ll k = pow_mod(a, s, n);   
+    // 二次探测
     if (k == 1) return true;  
     for (int i = 0; i < r; i++, k = k * k % n) {  
         if (k == n - 1) return true;  
@@ -60,7 +60,7 @@ bool Miller_Rabbin(ll a, ll n) {
     return false;  
 }  
 bool isprime(ll n) {  
-    // ￕ￢￀￯﾿￉ￒￔￋ￦ﾻ￺￈ﾡaￖﾵﾽ￸￐￐ￌﾽﾲ￢  ￌﾽﾲ￢ﾴￎￊ�﾿￉ￒￔￗￔﾼﾺﾶﾨ  
+    // 这里可以随机取值进行探测 探测次数可以自己定
     ll times = 7;  
     ll prime[100] = {2, 3, 5, 7, 11, 233, 331};  
     for (int i = 0; i < times; i++) {  
@@ -69,20 +69,3 @@ bool isprime(ll n) {
     }  
     return true;  
 }  
-void solve() {
-    int n;
-    while(~scanf("%lld", &n)) {
-        ll ans = 0;
-        for(int i=0;i<n;i++) {
-            ll x = read();
-            if(isprime(x)) ans++;
-        }
-        printf("%lld\n", ans);
-    }
-
-}
-int main() {
-   
-    solve();
-    return 0;
-}
