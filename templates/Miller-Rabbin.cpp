@@ -1,7 +1,3 @@
-#include<bits/stdc++.h>
-using namespace std;
-
-using ll = long long;
 inline ll read() {  
     ll x = 0, f = 1;  
     char ch = getchar();  
